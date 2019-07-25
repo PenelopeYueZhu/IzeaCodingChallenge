@@ -6,7 +6,9 @@ import { module, test } from 'qunit';
 import {
  //click,
  // currentURL,
- visit
+ visit,
+ fillIn,
+ triggerKeyEvent
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 // To test with mirage
@@ -23,4 +25,19 @@ module('Acceptance | list posts', function(hooks) {
 
     assert.equal(this.element.querySelectorAll('.single-post').length, 5);
   });
+
+  // Test to see if it actually filters
+  test('Should filter posts by keyword', async function( assert ){
+    await visit('/');
+    await fillIn( '.posts-filter input', '3');
+    await triggerKeyEvent( '.posts-filter input', 'keyup', 51);
+
+    // make sure we only have 1 post
+    assert.equal( this.element.querySelectorAll('.results .single-post').length,
+                  1,
+                  'should contain only 1 result');
+    // And that post does contain 3 in its title/body 
+    assert.ok( this.element.querySelector( '.single-post .title' ).textContent
+                .includes('3'), 'should contain 1 result with 3 in its title');
+  } )
 });
