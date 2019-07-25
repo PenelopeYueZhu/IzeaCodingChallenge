@@ -58,16 +58,21 @@ export default function() {
             request.queryParams.keyword.toLowerCase()
           ) !== -1)
           ||
-          // If the body has the keyword 
+          // If the body has the keyword
           (i.attributes.body.toLowerCase().indexOf(
             request.queryParams.keyword.toLowerCase()
           ) !== -1)
         );
 
       });
-      return  { data: filteredPosts };
+      return { data: filteredPosts };
     } else {
       return { data: posts };
     }
+  });
+
+  // Find and return the provided post from the list above
+  this.get('/posts/:id', function( db, request ){
+    return { data: posts.find( (post) => request.params.id == post.id )}
   });
 }

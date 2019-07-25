@@ -1,7 +1,11 @@
 <article class="single-post">
 
   <div class="title">
-    <h3>{{this.post.title}}</h3>
+    <h3>
+      {{#link-to 'posts.detail' post class=post.id}}
+        {{this.post.title}}
+      {{/link-to}}
+    </h3>
   </div>
 
   {{! Hide the by-user and body when clicking on the button }}
