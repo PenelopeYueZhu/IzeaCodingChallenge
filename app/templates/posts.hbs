@@ -2,14 +2,4 @@
   This is where the posts are.
 </div>
 
-<PostsFilter
-  @filter={{action "filterByKeyword"}}
-  as |filterResults| >
-
-  <ul class="results">
-    {{#each filterResults as |singlePost|}}
-      <IndividualPost @post = {{singlePost}} />
-    {{/each}}
-  </ul>
-</PostsFilter>
 {{outlet}}

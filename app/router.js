@@ -7,9 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('posts');
   this.route('users');
   this.route('photos');
+  this.route('posts', function() {});
 });
 
 export default Router;

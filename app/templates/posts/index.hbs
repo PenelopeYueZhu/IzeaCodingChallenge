@@ -1,0 +1,11 @@
+<PostsFilter
+  @filter={{action "filterByKeyword"}}
+  as |filterResults| >
+
+  <ul class="results">
+    {{#each filterResults as |singlePost|}}
+      <IndividualPost @post = {{singlePost}} />
+    {{/each}}
+  </ul>
+</PostsFilter>
+{{outlet}}
