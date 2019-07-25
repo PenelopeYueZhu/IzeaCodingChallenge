@@ -1,0 +1,7 @@
+<div>
+  This is where the posts are.
+</div>
+
+{{#each this.model as |singlePost|}}
+  <IndividualPost @post = {{singlePost}} />
+{{/each}}
