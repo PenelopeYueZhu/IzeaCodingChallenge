@@ -2,7 +2,7 @@
 
   <div class="title">
     <h3>
-      {{#link-to 'posts.detail' post class=post.id}}
+      {{#link-to "posts.detail" post class=(concat "post" post.id)}}
         {{this.post.title}}
       {{/link-to}}
     </h3>

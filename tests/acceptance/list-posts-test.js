@@ -4,8 +4,8 @@
 
 import { module, test } from 'qunit';
 import {
- //click,
- // currentURL,
+ click,
+ currentURL,
  visit,
  fillIn,
  triggerKeyEvent
@@ -36,8 +36,18 @@ module('Acceptance | list posts', function(hooks) {
     assert.equal( this.element.querySelectorAll('.results .single-post').length,
                   1,
                   'should contain only 1 result');
-    // And that post does contain 3 in its title/body 
+    // And that post does contain 3 in its title/body
     assert.ok( this.element.querySelector( '.single-post .title' ).textContent
                 .includes('3'), 'should contain 1 result with 3 in its title');
-  } )
+  } );
+
+  // Test to show if clicking on the title shows the detail of the page
+  test( 'Should show details of a post', async function( assert ) {
+    await visit( '/posts' );
+    await click( ".post1" );
+
+    assert.equal( currentURL(), '/posts/1', 'Should show details about a post');
+    assert.ok( this.element.querySelector('.post-detail h2').textContent
+                .includes('1'), "should show the title of post 1");
+  });
 });
