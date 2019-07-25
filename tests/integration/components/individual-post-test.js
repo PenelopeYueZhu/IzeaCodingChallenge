@@ -1,3 +1,7 @@
+/**
+ * File that test the behavior of individual posts
+ */
+
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
@@ -6,21 +10,20 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | individual-post', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  // Setting up fake data for the testers to use
+  hooks.beforeEach( function() {
+    this.fakePost = {
+      userId: 1,
+      id: 1,
+      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    };
+  });
 
-    await render(hbs`<IndividualPost />`);
+  test('Should display show more at start', async function(assert) {
 
-    assert.equal(this.element.textContent.trim(), '');
+    await render(hbs`<IndividualPost @post={{this.fakePost}} />`);
 
-    // Template block usage:
-    await render(hbs`
-      <IndividualPost>
-        template block text
-      </IndividualPost>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.querySelector('.op').textContent.trim(), 'by: 1');
   });
 });

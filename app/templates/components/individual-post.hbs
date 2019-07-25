@@ -1,12 +1,23 @@
 <article class="single-post">
+
   <div class="title">
     <h3>{{this.post.title}}</h3>
   </div>
 
-  <div class="op">
-    <span>by:</span> {{this.post.userId}}
-  </div>
-  <div class="body">
-    <h4>{{this.post.body}}</h4>
-  </div>
+  {{! Hide the by-user and body when clicking on the button }}
+  <a class="post{{if this.isExpanded "-expanded"}}"
+      role="button"
+      onclick={{action "toggleExpandedPost"}}>
+
+    {{! If it is expanded, show less. Otherwise show more}}
+    show {{if this.isExpanded "less" "more"}}
+    <div class="op">
+      <span>by:</span> {{this.post.userId}}
+    </div>
+    <div class="body">
+      <h4>{{this.post.body}}</h4>
+    </div>
+
+  </a>
+
 </article>
