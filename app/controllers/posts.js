@@ -12,7 +12,7 @@ export default Controller.extend({
       if( param !== '' ){
         return this.store
           // To sync up the search of typed in keyword and param keyword
-          .query( 'post', { keyword: param }).then( (results) => {
+          .query( 'post', { title: includes(param) }).then( (results) => {
             return {query: param, results: results};
           } );
       } else {
@@ -22,6 +22,22 @@ export default Controller.extend({
             return {query: param, results: results};
           });
       }
-    }
+    },
+
+    /**
+     * Getting a post's poster by corresponding between post's userId and
+     * user's
+     * @param {int} userId the userId on a post
+     * @return {string} the username
+     */
+    getUsername( userId ) {
+      if( id > 0 && id <= 10 ) { // Magic number 10 T-T
+        return this.store.queryRecord( 'user', {id: userId} ).then (
+          user => {
+            return user.get('username');
+          }
+        );
+      }
+    }// end getUsername 
   }
 });

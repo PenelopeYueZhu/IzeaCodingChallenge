@@ -6,10 +6,8 @@ import DS from 'ember-data';
 const { Model } = DS;
 
 export default Model.extend({
-//  user: DS.belongsTo('user'),
-
+  user: DS.belongsTo('user', {inverse: 'posts'}),
   userId: DS.attr(),
-  //id: DS.attr(),
   title: DS.attr(),
   body: DS.attr()
 });

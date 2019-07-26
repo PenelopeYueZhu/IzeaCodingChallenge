@@ -1,17 +1,21 @@
 /**
- * File to ajust post data key to JSON standard
+ * File to ajust user data key to JSON standard
  */
 
 import DS from 'ember-data';
 
-function buildNormalizedPost( source ){
+function buildNormalizedUser( source ){
   return {
     id: source.id,
-    type: 'post',
+    type: 'user',
     attributes: {
-      userId: source.userId,
-      title: source.title,
-      body: source.body
+      name: source.name,
+      username: source.username,
+      email: source.email,
+      address: source.address,
+      phone: source.phone,
+      website: source.website,
+      company: source.company
     }
   };
 }
@@ -28,13 +32,19 @@ export default DS.RESTSerializer.extend( {
    * @return {json document} the json data from rest data
    */
   normalize( modelClass, resourceHash ){
+
     var data = {
       id: resourceHash.id,
       type: modelClass.modelName,
       attributes: {
-        userId: resourceHash.userId,
-        title: resourceHash.title,
-        body: resourceHash.body
+        id: resourceHash.id,
+        name: resourceHash.name,
+        username: resourceHash.username,
+        email: resourceHash.email,
+        address: resourceHash.address,
+        phone: resourceHash.phone,
+        website: resourceHash.website,
+        company: resourceHash.company
       }
     };
     return { data: data };
@@ -57,17 +67,15 @@ export default DS.RESTSerializer.extend( {
     // If payload has more than one objects
     if( payload.length ){
       // Now loop through the payload and normalize each response
-      payload.map( function( singlePost ){
-          var normalizedPost = buildNormalizedPost( singlePost );
+      payload.map( function( singleUser ){
+          var normalizedUser = buildNormalizedUser( singleUser );
           // push it into the array
-          data.push( normalizedPost );
+          data.push( normalizedUser );
       });
     } else { // otherwise the payload is just one obect
-      var normalizedPost = buildNormalizedPost( payload ) ;
-      data.push( normalizedPost );
+      var normalizedUser = buildNormalizedUser( payload ) ;
+      data.push( normalizedUser );
     }
-
-
     //return this._super(store, primaryModelClass, data, id, requestType);
 
     // Now we have the entire array normalized, return

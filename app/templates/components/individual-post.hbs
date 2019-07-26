@@ -16,7 +16,7 @@
     {{! If it is expanded, show less. Otherwise show more}}
     show {{if this.isExpanded "less" "more"}}
     <div class="op">
-      <span>by:</span> {{this.post.userId}}
+      <span>by:</span> {{this.post.user.username}}
     </div>
     <div class="body">
       <h4>{{this.post.body}}</h4>
