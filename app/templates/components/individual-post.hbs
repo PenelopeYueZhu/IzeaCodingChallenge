@@ -22,6 +22,12 @@
       <h4>{{this.post.body}}</h4>
     </div>
 
+    <div class="comments">
+      {{#each this.post.comments as |comment| }}
+        <h5>{{comment.body}}</h5>
+      {{/each}}
+    </div>
+
   </a>
 
 </article>

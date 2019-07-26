@@ -19,7 +19,14 @@ export default Route.extend({
       user: this.get('ajax').request('/users').then(
               responseUser => {
                 store.pushPayload( 'user', responseUser );
-            })
+            }),
+
+      // Getting all the comments
+      comments: this.get('ajax').request('/comments').then(
+                  responseComment => {
+                    store.pushPayload( 'comment', responseComment );
+                })
+
     });
   }
 });

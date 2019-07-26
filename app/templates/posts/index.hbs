@@ -1,11 +1,8 @@
-<PostsFilter
-  @filter={{action "filterByKeyword"}}
-  as |filterResults| >
-
+{{#pagination posts=model as |pagedPosts| }}
   <ul class="results">
-    {{#each filterResults as |singlePost|}}
+    {{#each pagedPosts as |singlePost|}}
       <IndividualPost @post = {{singlePost}} />
     {{/each}}
   </ul>
-</PostsFilter>
+{{/pagination}}
 {{outlet}}

@@ -1,0 +1,8 @@
+{{yield pagedContent}}
+<ul>
+  {{#each pageNumbers as |pageNumber| }}
+    <li>
+      <button {{action "pageClicked" pageNumber }}>Page {{pageNumber}}</button>
+    </li>
+  {{/each}}
+</ul>
