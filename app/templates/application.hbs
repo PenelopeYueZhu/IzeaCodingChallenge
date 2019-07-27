@@ -1,10 +1,12 @@
+<link rel="icon" href="/public/favicon.ico">
+
 <div class="container">
 
   {{! The navigation bar at the top that doesn't move }}
   <nav class="navbar">
     {{#link-to "index"}}
       <h1>
-        <h2>A Potate Pit of Programmers</h2>
+        A Potate Pit of Programmers
       </h1>
     {{/link-to}}
 
@@ -21,11 +23,12 @@
         Photos
       {{/link-to}}
 
+      <span class="stretch"></span>
+
     </div> {{! navtabs }}
 
   </nav> {{! navbar }}
 
-  <div class="body">
     {{outlet}}
-  </div>
+
 </div> {{! container }}

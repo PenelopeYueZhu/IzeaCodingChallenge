@@ -1,20 +1,19 @@
 <article class="single-post">
 
   <div class="title">
-    <h3>
-      {{#link-to "posts.detail" post class=(concat "post" post.id)}}
-        {{this.post.title}}
-      {{/link-to}}
-    </h3>
+    {{#link-to "posts.detail" post class=(concat "post" post.id)}}
+      {{this.post.title}}
+    {{/link-to}}
   </div>
 
   {{! Hide the by-user and body when clicking on the button }}
-  <a class="post{{if this.isExpanded "-expanded"}}"
+  <a class="showButton"
       role="button"
       onclick={{action "toggleExpandedPost"}}>
-
     {{! If it is expanded, show less. Otherwise show more}}
-    show {{if this.isExpanded "less" "more"}}
+    show {{if this.postExpanded "less" "more"}}
+  </a>
+  <div class="post{{if this.postExpanded "-expanded" "-hidden"}}">
     <div class="op">
       <span>by:</span> {{this.post.user.username}}
     </div>
@@ -22,12 +21,16 @@
       <h4>{{this.post.body}}</h4>
     </div>
 
-    <div class="comments">
+    {{! Hide the comments unless the user wishes to know}}
+    <a class="showButton" role="button"
+        onclick={{action "toggleExpandedComment"}}>
+      {{if this.commentExpanded "collapse comments" "show comments"}}
+    </a>
+    <div class="comments{{if this.commentExpanded "-expanded" "-hidden"}}">
       {{#each this.post.comments as |comment| }}
         <h5>{{comment.body}}</h5>
       {{/each}}
     </div>
-
-  </a>
+  </div>
 
 </article>

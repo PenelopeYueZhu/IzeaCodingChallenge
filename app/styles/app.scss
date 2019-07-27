@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+$light-beige: #fff2e6;
+$title-font-family: 'lato', sans-serif;
+
+* {
+  border-style: dotted;
+
+}
+
+body {
+  background-color: $light-beige;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container{
+  text-align: justify;
+}
+
+.navbar {
+  h1 {
+    font: {
+      family: $title-font-family;
+      size: 50px;
+    }
+    text-align: center;
+    color: blue;
+  }
+
+  .navtabs {
+    font: {
+      family: $title-font-family;
+      size: 30px;
+    }
+    text-align: center;
+    background-color: grey;
+
+    [class^="navbar-"] {
+      display: inline-block;
+    }
+  }
+}
+
+.post-hidden {
+  display: none;
+}
+
+.comments-hidden {
+  display: none;
+}
+
+[class^="post"] {
+
+}
+
+.title {
+  font: {
+    family: $title-font-family;
+    size: 30px;
+    weight: 300;
+  }
+}

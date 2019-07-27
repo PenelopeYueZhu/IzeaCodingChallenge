@@ -1,10 +1,15 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  isExpanded: false,
+  postExpanded: false,
+  commentExpanded: false,
   actions: {
     toggleExpandedPost() {
-      this.toggleProperty( 'isExpanded' );
+      this.toggleProperty( 'postExpanded' );
+    },
+
+    toggleExpandedComment() {
+      this.toggleProperty( 'commentExpanded' );
     }
   }
 });
