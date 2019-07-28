@@ -1,8 +1,14 @@
-{{yield pagedContent}}
-<ul>
+{{yield pagedContent}} {{! Display the ten posts of the current page }}
+<ul class="page-list">
   {{#each pageNumbers as |pageNumber| }}
     <li>
-      <button {{action "pageClicked" pageNumber }}>Page {{pageNumber}}</button>
+      <button class="page-button" {{action "pageClicked" pageNumber }}>
+        <div>
+          <img src="/assets/images/logo.png" alt="potat pages"
+              style="height: 30px"/>
+        </div>
+        {{pageNumber}} {{! The page number user can choose from }}
+      </button>
     </li>
   {{/each}}
 </ul>

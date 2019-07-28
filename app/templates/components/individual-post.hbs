@@ -1,5 +1,8 @@
+{{! Template to render a single post, including title, body and comments}}
+
 <article class="single-post">
 
+  {{! Title of the post }}
   <div class="title">
     {{#link-to "posts.detail" post class=(concat "post" post.id)}}
       {{this.post.title}}
@@ -16,21 +19,26 @@
 
   {{! The actual body and comments of the post }}
   <div class="post-detail">
+    {{! The original poster }}
     <div class="op">
-      <span>by:</span> {{this.post.user.username}}
+      <span>Posted by:</span>
+      {{this.post.user.username}} ({{this.post.user.website}})
     </div>
-    <div class="body">
-      <h4>{{this.post.body}}</h4>
+    <div class="post-body">
+      <p>{{this.post.body}}</p>
     </div>
 
     {{! Hide the comments unless the user wishes to know}}
-    <a class="showButton" role="button"
-        onclick={{action "toggleExpandedComment"}}>
-      {{if this.commentExpanded "collapse comments" "show comments"}}
-    </a>
-    <div class="comments{{if this.commentExpanded "-expanded" "-hidden"}}">
+    <input class="toggle" id="toggleCommentId{{post.id}}" type="checkbox">
+    <label class="lbl-toggle" for="toggleCommentId{{post.id}}"
+            onclick={{action "toggleExpandedComment"}}>
+      {{if this.commentExpanded "hide comments" "load comments"}}
+    </label>
+    {{! actual comments}}
+    <div class="comments">
       {{#each this.post.comments as |comment| }}
-        <h5>{{comment.body}}</h5>
+        <p class="comment-name">{{comment.name}}({{comment.email}})</p>
+        <p class="comment-body">{{comment.body}}</p>
       {{/each}}
     </div>
   </div>

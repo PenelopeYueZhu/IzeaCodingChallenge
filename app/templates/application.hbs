@@ -10,7 +10,12 @@
       </li>
       <li>
         {{#link-to "posts" class="navbar-posts"}}
-          Posts
+          <input type="button" value=" " id="reloadPost"
+                  style="display:none;">
+          <label for="reloadPost" onClick="document.location.reload(true)"
+                  style="cursor: pointer;">
+            Posts
+          </label>
         {{/link-to}}
       </li>
       <li>
@@ -27,9 +32,14 @@
     </ul>
   </nav> {{! navbar }}
 
+  {{! The bigggg banner :D }}
   <div class="main-title">
     {{#link-to "index"}}
-      A Potate Pit of Programmers
+      <input type="button" value=" " id="reloadPost">
+      <label for="reloadPost" onClick="document.location.reload(true)"
+              id="lbl-reloadPost">
+        A Potato Pit of Programmers
+      </label>
     {{/link-to}}
   </div>
 

@@ -5,6 +5,15 @@ $title-font-family: 'Open Sans', sans-serif;
 $title-bg-dark: #972276;
 $title-bg-light: #f50374;
 $post-bg: #f2f2f2;
+$post-body-color: #333333;
+$user-color: #737373;
+
+// The mixin for expanding collapsed variables
+@mixin collapsibleContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
 
 // Just for testing
 * {
@@ -82,6 +91,14 @@ ul {
     color: white;
     font-size: 60px;
   }
+
+  #reloadPost {
+    display: none;
+  }
+
+  #lbl-reloadPost {
+    cursor: pointer;
+  }
 }
 
 /* ************ end of application.hbs *********************/
@@ -102,10 +119,42 @@ input[type='checkbox'] { // hide the actual checkbox
   display: none;
 }
 
+// Styling the actual post
+.single-post .title{
+  font: {
+    size: 30px;
+    weight: bold;
+  }
+  letter-spacing: -1px;
+  text-align: left;
+}
+
 .post-detail {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
+
+  @include collapsibleContent;
+  padding-left: 40px;
+  border-left: 1px solid $post-bg;
+  color: $post-body-color;
+
+  .op {
+    color: $user-color;
+    font-size: 15px;
+  }
+}
+
+.comments { // comment seperately collapsible
+  @include collapsibleContent;
+  padding-left: 40px;
+
+  .comment-name {
+    font-size: 12px;
+    margin-bottom: 1px;
+    color: $user-color;
+  }
+
+  .comment-body {
+    margin-top: 1px;
+  }
 }
 
 .lbl-toggle {
@@ -113,13 +162,13 @@ input[type='checkbox'] { // hide the actual checkbox
 
   font: {
     weight: bold;
-    size: 0.8rem;
+    size: 14px;
   }
   text-align: left;
 
-  padding: 1rem;
+  padding: 16px;
 
-  color: grey;
+  color: #cccccc;
 
   &:before {
     border: {
@@ -140,26 +189,35 @@ input[type='checkbox'] { // hide the actual checkbox
 }
 
 .toggle:checked + .lbl-toggle + .post-detail {
-  max-height: 350px;
+  max-height: 1000px;
 }
 
 .toggle:checked + .lbl-toggle::before {
   transform: rotate(90deg) translateX(-3px);
 }
 
-.toggle:checked + .lbl-toggle {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+.toggle:checked + .lbl-toggle + .comments {
+  max-height: 1000px;
 }
 
 
-.comments-hidden {
-  display: none;
-}
+/*************** done styling the posts *******************/
 
-.title {
-  font: {
-    size: 30px;
-    weight: 300;
+/******************* style the page list *****************/
+
+.page-list {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+
+  margin-top: 40px;
+
+  :hover {
+    cursor: pointer;
   }
+}
+
+.page-button {
+  border-style: hidden;
+  background-color: white;
 }

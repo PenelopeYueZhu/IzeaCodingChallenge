@@ -1,4 +1,5 @@
 {{#pagination posts=model as |pagedPosts| }}
+  {{! yield will display the following code, with the pages at the button}}
   <ul class="post-list">
     {{#each pagedPosts as |singlePost|}}
       <li>
