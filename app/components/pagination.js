@@ -45,7 +45,7 @@ export default Component.extend({
     // Go to the clicked page number
     pageClicked( pageNumber ){
       this.set( 'currentPage', pageNumber );
-      // Scroll back to top 
+      // Scroll back to top
       window.scrollTo( 0,0 );
     }
   }

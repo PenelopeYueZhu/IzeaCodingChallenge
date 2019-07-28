@@ -4,6 +4,7 @@ $title-banner-height: 600px;
 $title-font-family: 'Open Sans', sans-serif;
 $title-bg-dark: #972276;
 $title-bg-light: #f50374;
+$post-bg: #f2f2f2;
 
 // Just for testing
 * {
@@ -87,16 +88,73 @@ ul {
 
 /* ************ styling main post page ********************/
 
-.post-hidden {
+.post-list {
+  background-color: white;
+  :nth-of-type(even) { // alternating list color
+    article {
+      background-color: $post-bg;
+    }
+  }
+}
+
+/*** make the post expanding **/
+input[type='checkbox'] { // hide the actual checkbox
   display: none;
 }
+
+.post-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.lbl-toggle {
+  display: block;
+
+  font: {
+    weight: bold;
+    size: 0.8rem;
+  }
+  text-align: left;
+
+  padding: 1rem;
+
+  color: grey;
+
+  &:before {
+    border: {
+      top: 5px solid transparent;
+      bottom: 5px solid transparent;
+      left: 5px solid currentColor;
+    } // End of border
+
+    content: ' ';
+    display: inline-block;
+
+    vertical-align: middle;
+    margin-right: 0.7rem;
+    transform: translateY( -2px );
+
+    transition: transform 0.2s ease-out;
+  } // end of before
+}
+
+.toggle:checked + .lbl-toggle + .post-detail {
+  max-height: 350px;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 
 .comments-hidden {
   display: none;
-}
-
-[class^="post"] {
-
 }
 
 .title {

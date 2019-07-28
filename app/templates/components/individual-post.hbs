@@ -6,14 +6,16 @@
     {{/link-to}}
   </div>
 
+
   {{! Hide the by-user and body when clicking on the button }}
-  <a class="showButton"
-      role="button"
-      onclick={{action "toggleExpandedPost"}}>
-    {{! If it is expanded, show less. Otherwise show more}}
-    show {{if this.postExpanded "less" "more"}}
-  </a>
-  <div class="post{{if this.postExpanded "-expanded" "-hidden"}}">
+  <input class="toggle" id="toggleId{{post.id}}" type="checkbox">
+  <label class="lbl-toggle" for="toggleId{{post.id}}"
+          onclick={{action "toggleExpandedPost"}}>
+    {{if this.postExpanded "collapse" "expand"}}
+  </label>
+
+  {{! The actual body and comments of the post }}
+  <div class="post-detail">
     <div class="op">
       <span>by:</span> {{this.post.user.username}}
     </div>
