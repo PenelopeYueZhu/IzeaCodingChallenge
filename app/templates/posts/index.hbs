@@ -1,7 +1,9 @@
 {{#pagination posts=model as |pagedPosts| }}
-  <ul class="results">
+  <ul class="post-list">
     {{#each pagedPosts as |singlePost|}}
-      <IndividualPost @post = {{singlePost}} />
+      <li>
+        <IndividualPost @post = {{singlePost}} />
+      </li>
     {{/each}}
   </ul>
 {{/pagination}}

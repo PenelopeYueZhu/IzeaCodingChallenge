@@ -4,31 +4,35 @@
 
   {{! The navigation bar at the top that doesn't move }}
   <nav class="navbar">
-    {{#link-to "index"}}
-      <h1>
-        A Potate Pit of Programmers
-      </h1>
-    {{/link-to}}
+    <ul>
+      <li>
+        <img src="/assets/images/logo.png"/>
+      </li>
+      <li>
+        {{#link-to "posts" class="navbar-posts"}}
+          Posts
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "users" class="navbar-users"}}
+          Users
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to "photos" class="navbar-photos"}}
+          Photos
+        {{/link-to}}
 
-    <div class="navtabs">
-      {{#link-to "posts" class="navbar-posts"}}
-        Posts
-      {{/link-to}}
-
-      {{#link-to "users" class="navbar-users"}}
-        Users
-      {{/link-to}}
-
-      {{#link-to "photos" class="navbar-photos"}}
-        Photos
-      {{/link-to}}
-
-      <span class="stretch"></span>
-
-    </div> {{! navtabs }}
-
+      </li>
+    </ul>
   </nav> {{! navbar }}
 
-    {{outlet}}
+  <div class="main-title">
+    {{#link-to "index"}}
+        A Potate Pit of Programmers
+    {{/link-to}}
+  </div>
+
+  {{outlet}}
 
 </div> {{! container }}

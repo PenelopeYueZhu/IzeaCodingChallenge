@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-$light-beige: #fff2e6;
-$title-font-family: 'lato', sans-serif;
+$title-banner-height: 600px;
+$title-font-family: 'Open Sans', sans-serif;
+$title-bg-dark: #972276;
+$title-bg-light: #f50374;
 
+// Just for testing
 * {
-  border-style: dotted;
-
+  //border-style: dotted;
+  font-family: $title-font-family;
 }
 
 body {
-  background-color: $light-beige;
+  background-color: white;
 }
 
 a {
@@ -17,33 +20,72 @@ a {
   color: black;
 }
 
+ul {
+  list-style: none;
+}
+
+/* ***************** this is the for the top banner / applicatoin.hbs
+ */
 .container{
   text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
 }
 
 .navbar {
-  h1 {
-    font: {
-      family: $title-font-family;
-      size: 50px;
-    }
-    text-align: center;
-    color: blue;
+  font: {
+    size: 20px;
+  }
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  overflow: hidden;
+  background-color: white;
+
+
+  ul {
+    float: left;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+  }// end of ul
+
+  li {
+    padding-left: 20px;
+    display: block;
+  } // end of li
+
+  img {
+    width: auto;
+    height: auto;
+    max-height: 30px;
   }
 
-  .navtabs {
-    font: {
-      family: $title-font-family;
-      size: 30px;
-    }
-    text-align: center;
-    background-color: grey;
+}
 
-    [class^="navbar-"] {
-      display: inline-block;
-    }
+.main-title {
+  background-image: linear-gradient(90deg, $title-bg-light, $title-bg-dark);
+  height: $title-banner-height;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  a {
+    line-height: $title-banner-height;
+    text-align: center;
+
+    color: white;
+    font-size: 60px;
   }
 }
+
+/* ************ end of application.hbs *********************/
+
+/* ************ styling main post page ********************/
 
 .post-hidden {
   display: none;
@@ -59,7 +101,6 @@ a {
 
 .title {
   font: {
-    family: $title-font-family;
     size: 30px;
     weight: 300;
   }
