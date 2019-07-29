@@ -14,4 +14,5 @@ Interview Coding Challenge For Izea Front End Developer
 
 ## References
 
-* [https://api.emberjs.com/ember/release](https://api.emberjs.com/ember/release)
+* [https://api.emberjs.com/ember/release](https://api.emberjs.com/ember/release) For obvious reasons :3
+* [https://alligator.io/css/collapsible/](https://alligator.io/css/collapsible/) To style the collapsible posts
