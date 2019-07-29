@@ -10,13 +10,10 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 // To test with mirage
-import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 module('Acceptance | navbar', function(hooks) {
   setupApplicationTest(hooks);
-  // To test with mirage
-  setupMirage(hooks);
-
+  
   // Test to see if front page is mapped to the right page
   test('index page should be the posts page', async function(assert) {
     await visit('/');

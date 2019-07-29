@@ -3,10 +3,10 @@
  */
 
 import Route from '@ember/routing/route';
-import {inject as service } from '@ember/service';
+//import {inject as service } from '@ember/service';
 
 export default Route.extend({
-  ajax: service(), // Use ajax to connect to server 
+//  ajax: service(), // Use ajax to connect to server
 
   /* loaded when the app just starts up */
   model(){
@@ -14,7 +14,7 @@ export default Route.extend({
     var store = this.store;
 
     // Get all the user just to populate store
-    store.findAll( 'user' ).then( function() {
+    return store.findAll( 'user' ).then( function() {
 
       store.findAll('post').then( posts => {
         // Setting the relationship between post and user
@@ -23,7 +23,7 @@ export default Route.extend({
           let user = store.peekRecord( 'user', userId );
           post.set('user', user);
         });
-        posts.save();
+        //posts.save();
       });
 
       // Getting all the records of comments
@@ -34,9 +34,9 @@ export default Route.extend({
           let post = store.peekRecord( 'post', postId );
           comment.set( 'post', post );
         });
-        comments.save();
+        //comments.save();
       }); // end of find all commet
-    })
+    });
 
   }
 });

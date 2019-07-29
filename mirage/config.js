@@ -1,78 +1,18 @@
 export default function() {
 
   // only provide data for URL requests that starts with api
-  this.namespace = '/api';
+  this.namespace = 'api';
 
-  // Data given to requests from /api/posts
-  let posts = [{
-      type: 'posts',
-      id: 1,
-      attributes: {
-        userId: 1,
-        title: "1sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    }, {
-      type: 'posts',
-      id: 2,
-      attributes: {
-        userId: 2,
-        title: "2sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    }, {
-      type: 'posts',
-      id: 3,
-      attributes: {
-        userId: 2,
-        title: "3sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    }, {
-      type: 'posts',
-      id: 4,
-      attributes: {
-        userId: 2,
-        title: "4sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    }, {
-      type: 'posts',
-      id: 5,
-      attributes: {
-        userId: 3,
-        title: "5sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-      }
-    }]; // end of data[]
+  // Routing all the links to here in testing
+  this.get( '/posts');
 
-  // When getting a GET request from posts, we execute this code
-  this.get('/posts', function( db, request ) {
-    if( request.queryParams.keyword !== undefined ) {
-      // Filter through posts with the keyword provided
-      let filteredPosts = posts.filter( function( i ) {
-        // Check if the body or title has the keyword
-        return (
-          // If the title has the keyword
-          (i.attributes.title.toLowerCase().indexOf(
-            request.queryParams.keyword.toLowerCase()
-          ) !== -1)
-          ||
-          // If the body has the keyword
-          (i.attributes.body.toLowerCase().indexOf(
-            request.queryParams.keyword.toLowerCase()
-          ) !== -1)
-        );
+  this.get( '/users');
 
-      });
-      return { data: filteredPosts };
-    } else {
-      return { data: posts };
-    }
-  });
+  this.get( '/comments');
+
 
   // Find and return the provided post from the list above
-  this.get('/posts/:id', function( db, request ){
-    return { data: posts.find( (post) => request.params.id == post.id )}
-  });
+//  this.get('/posts/:id', function( db, request ){
+//    return { data: posts.find( (post) => request.params.id == post.id )}
+//  });
 }

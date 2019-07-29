@@ -7,39 +7,38 @@ import {
  click,
  currentURL,
  visit,
- fillIn,
- triggerKeyEvent
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 // To test with mirage
-import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+//import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 module('Acceptance | list posts', function(hooks) {
   setupApplicationTest(hooks);
   // To test with mirage
-  setupMirage(hooks);
+  //setupMirage(hooks);
 
-  // Test to see if the number of posts loaded are correct
-  test('Should load 5 posts', async function(assert) {
+  // Test to see if the number of posts loaded on the first page is correct
+  test('Should load 10 posts on the first page', async function(assert) {
     await visit('/');
 
-    assert.equal(this.element.querySelectorAll('.single-post').length, 5);
+    assert.equal(this.element.querySelectorAll(".single-post").length, 10);
+    // The author should be bret
+    assert.ok(this.element.querySelector(".op").textContent.includes("Bret"));
   });
 
-  // Test to see if it actually filters
-  test('Should filter posts by keyword', async function( assert ){
-    await visit('/');
-    await fillIn( '.posts-filter input', '3');
-    await triggerKeyEvent( '.posts-filter input', 'keyup', 51);
+  test('Should load another 10 at the second page', async function( assert ) {
+    await visit( '/' );
 
-    // make sure we only have 1 post
-    assert.equal( this.element.querySelectorAll('.results .single-post').length,
-                  1,
-                  'should contain only 1 result');
-    // And that post does contain 3 in its title/body
-    assert.ok( this.element.querySelector( '.single-post .title' ).textContent
-                .includes('3'), 'should contain 1 result with 3 in its title');
-  } );
+    await click( ".page-button");
+
+    // Now we are on the second page, there should still be 10 posts
+    assert.equal( this.element.querySelectorAll(".single-post").length, 10 );
+    // The author shold be Antonette
+    console.log(this.element.querySelector(".op").
+                  textContent);
+    assert.ok(this.element.querySelector(".op").
+                  textContent.includes("Antonette"));
+  })
 
   // Test to show if clicking on the title shows the detail of the page
   test( 'Should show details of a post', async function( assert ) {
@@ -47,7 +46,6 @@ module('Acceptance | list posts', function(hooks) {
     await click( ".post1" );
 
     assert.equal( currentURL(), '/posts/1', 'Should show details about a post');
-    assert.ok( this.element.querySelector('.post-detail h2').textContent
-                .includes('1'), "should show the title of post 1");
+
   });
 });

@@ -1,4 +1,10 @@
-import { JSONAPISerializer } from 'ember-cli-mirage';
+/**
+ * File to ajust post data key to JSON standard
+ */
 
-export default JSONAPISerializer.extend({
-});
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend( {
+
+
+} );

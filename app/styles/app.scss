@@ -72,6 +72,15 @@ ul {
     max-height: 30px;
   }
 
+
+  .reloadPost {
+    display: none;
+  }
+
+  .lbl-reloadPost {
+    cursor: pointer;
+  }
+
 }
 
 .main-title {
@@ -92,13 +101,6 @@ ul {
     font-size: 60px;
   }
 
-  #reloadPost {
-    display: none;
-  }
-
-  #lbl-reloadPost {
-    cursor: pointer;
-  }
 }
 
 /* ************ end of application.hbs *********************/
@@ -220,4 +222,8 @@ input[type='checkbox'] { // hide the actual checkbox
 .page-button {
   border-style: hidden;
   background-color: white;
+
+  img {
+    height: 30px;
+  }
 }
