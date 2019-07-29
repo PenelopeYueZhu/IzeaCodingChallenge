@@ -9,4 +9,5 @@ module('Unit | Controller | posts', function(hooks) {
     let controller = this.owner.lookup('controller:posts');
     assert.ok(controller);
   });
+
 });

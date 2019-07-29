@@ -1,12 +1,14 @@
-{{yield pagedContent}} {{! Display the ten posts of the current page }}
-<ul class="page-list">
+{{yield pagedContent }} {{! Display the ten posts of the current page }}
+<ul class="page-list" data-test-page-num-list>
   {{#each pageNumbers as |pageNumber| }}
     <li>
-      <button class="page-button" {{action "pageClicked" pageNumber }}>
+      <button class="page-button" {{action "pageClicked" pageNumber }}
+              data-test-page-button={{pageNumber}}>
         <div>
-          <img src="/assets/images/logo.png" alt="potat pages" >
+          <img src="/assets/images/logo.png" alt="potato pages" >
         </div>
-        {{pageNumber}} {{! The page number user can choose from }}
+        {{! The page number user can choose from }}
+        <div>{{pageNumber}}</div>
       </button>
     </li>
   {{/each}}

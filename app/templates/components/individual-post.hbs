@@ -1,9 +1,9 @@
 {{! Template to render a single post, including title, body and comments}}
 
-<article class="single-post">
+<article class="single-post" data-test-single-post>
 
   {{! Title of the post }}
-  <div class="title">
+  <div class="title" data-test-post-title>
     {{#link-to "posts.detail" post class=(concat "post" post.id)}}
       {{this.post.title}}
     {{/link-to}}
@@ -13,32 +13,37 @@
   {{! Hide the by-user and body when clicking on the button }}
   <input class="toggle" id="toggleId{{post.id}}" type="checkbox">
   <label class="lbl-toggle" for="toggleId{{post.id}}"
-          onclick={{action "toggleExpandedPost"}}>
+          onclick={{action "toggleExpandedPost"}}
+          data-test-post-expand-label>
     {{if this.postExpanded "collapse" "expand"}}
   </label>
 
   {{! The actual body and comments of the post }}
-  <div class="post-detail">
+  <div class="post-detail" data-test-post-detail>
     {{! The original poster }}
-    <div class="op">
-      <span>Posted by:</span>
-      {{this.post.user.username}} ({{this.post.user.website}})
+    <div class="op" data-test-original-poster>
+      <span>Posted by:</span> {{this.post.user.username}} ({{this.post.user.website}})
     </div>
-    <div class="post-body">
+    <div class="post-body" data-test-post-body>
       <p>{{this.post.body}}</p>
     </div>
 
     {{! Hide the comments unless the user wishes to know}}
     <input class="toggle" id="toggleCommentId{{post.id}}" type="checkbox">
     <label class="lbl-toggle" for="toggleCommentId{{post.id}}"
-            onclick={{action "toggleExpandedComment"}}>
+            onclick={{action "toggleExpandedComment"}}
+            data-test-comment-label>
       {{if this.commentExpanded "hide comments" "load comments"}}
     </label>
     {{! actual comments}}
-    <div class="comments">
+    <div class="comments" data-test-comment>
       {{#each this.post.comments as |comment| }}
-        <p class="comment-name">{{comment.name}}({{comment.email}})</p>
-        <p class="comment-body">{{comment.body}}</p>
+        <p class="comment-name" data-test-commenter>
+          {{comment.name}}({{comment.email}})
+        </p>
+        <p class="comment-body" data-test-comment-body>
+          {{comment.body}}
+        </p>
       {{/each}}
     </div>
   </div>

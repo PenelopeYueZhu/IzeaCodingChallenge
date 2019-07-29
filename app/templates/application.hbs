@@ -12,7 +12,7 @@
         {{#link-to "posts" class="navbar-posts"}}
           <input type="button" value=" " id="reloadPostNav" class="reloadPost" >
           <label for="reloadPostNav" onClick="document.location.reload(true)"
-                  class="lbl-reloadPost">
+                  class="lbl-reloadPost" data-test-nav-post-label>
             Posts
           </label>
         {{/link-to}}
@@ -35,7 +35,7 @@
   <div class="main-title">
     {{#link-to "index"}}
       <label for="reloadPostTitle" onClick="document.location.reload(true)"
-              class="lbl-reloadPost">
+              class="lbl-reloadPost" data-test-title-post-label>
         A Potato Pit of Programmers
       </label>
     {{/link-to}}

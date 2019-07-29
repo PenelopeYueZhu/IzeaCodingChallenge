@@ -14,20 +14,26 @@ export default Component.extend({
   postsPerPage: 10, // 10 posts per page
 
   totalNumPages: computed( 'posts', function() {
-    var numOfPosts = this.get('posts').length;
-    var postsPerPage = parseInt( this.get( 'postsPerPage' ) );
-    return Math.ceil( numOfPosts / postsPerPage );
+    if( this.get('posts') ){
+      var numOfPosts = this.get('posts').length;
+      var postsPerPage = parseInt( this.get( 'postsPerPage' ) );
+      return Math.ceil( numOfPosts / postsPerPage );
+    }
+    else return 1;
   }),
 
   // The posts on that page
   pagedContent: computed('posts', 'currentPage', function(){
-    var pageNum = parseInt( this.get( 'currentPage' ) );
-    var postNum = parseInt( this.get( 'postsPerPage') );
-    // Getting the id of the frst post on the page
-    var startingId = ( pageNum - 1 ) * postNum;
-    // The id of the last post on the page
-    var endingId = startingId + postNum;
-    return this.get('posts').slice( startingId, endingId );
+    if( this.get('posts') ){
+      var pageNum = parseInt( this.get( 'currentPage' ) );
+      var postNum = parseInt( this.get( 'postsPerPage') );
+      // Getting the id of the frst post on the page
+      var startingId = ( pageNum - 1 ) * postNum;
+      // The id of the last post on the page
+      var endingId = startingId + postNum;
+      return this.get('posts').slice( startingId, endingId );
+    }
+    else return ' ';
   } ),
 
   // Array of numbers to represent pages

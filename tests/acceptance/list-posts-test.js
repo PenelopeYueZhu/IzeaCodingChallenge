@@ -5,8 +5,9 @@
 import { module, test } from 'qunit';
 import {
  click,
- currentURL,
  visit,
+ findAll,
+ currentURL
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 // To test with mirage
@@ -17,35 +18,33 @@ module('Acceptance | list posts', function(hooks) {
   // To test with mirage
   //setupMirage(hooks);
 
+  // Test to see if front page is mapped to the right page
+  test('index page should be the posts page', async function(assert) {
+    await visit('/');
+
+    assert.equal(currentURL(), '/posts',
+                  // The error message when test fails
+                  'index page should be posts page.');
+  });
+
   // Test to see if the number of posts loaded on the first page is correct
   test('Should load 10 posts on the first page', async function(assert) {
     await visit('/');
 
-    assert.equal(this.element.querySelectorAll(".single-post").length, 10);
-    // The author should be bret
-    assert.ok(this.element.querySelector(".op").textContent.includes("Bret"));
+    assert.equal( findAll('[data-test-single-post]').length, 10,
+                                    'Should be 10 posts in total loaded' );
   });
 
+  // Testing if clicking the page button actually renders the next 10 posts 
   test('Should load another 10 at the second page', async function( assert ) {
     await visit( '/' );
 
-    await click( ".page-button");
+    await click( '[data-test-page-button="2"]' );
 
     // Now we are on the second page, there should still be 10 posts
-    assert.equal( this.element.querySelectorAll(".single-post").length, 10 );
-    // The author shold be Antonette
-    console.log(this.element.querySelector(".op").
-                  textContent);
-    assert.ok(this.element.querySelector(".op").
-                  textContent.includes("Antonette"));
+    assert.equal( findAll('[data-test-single-post]').length, 10,
+                                    'Should be 10 posts in total loaded' );
+
   })
 
-  // Test to show if clicking on the title shows the detail of the page
-  test( 'Should show details of a post', async function( assert ) {
-    await visit( '/posts' );
-    await click( ".post1" );
-
-    assert.equal( currentURL(), '/posts/1', 'Should show details about a post');
-
-  });
 });

@@ -14,7 +14,7 @@ export default Route.extend({
     var store = this.store;
 
     // Get all the user just to populate store
-    return store.findAll( 'user' ).then( function() {
+    store.findAll( 'user' ).then( function() {
 
       store.findAll('post').then( posts => {
         // Setting the relationship between post and user
@@ -28,6 +28,7 @@ export default Route.extend({
 
       // Getting all the records of comments
       store.findAll('comment').then( comments => {
+        console.log( comments )
         // Setting the relationship between comment and post
         comments.forEach( comment => {
           var postId = comment.get( 'postId' );
