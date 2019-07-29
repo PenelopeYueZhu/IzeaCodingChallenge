@@ -11,7 +11,8 @@
       <li>
         {{#link-to "posts" class="navbar-posts"}}
           <input type="button" value=" " id="reloadPostNav" class="reloadPost" >
-          <label for="reloadPostNav" onClick="document.location.reload(true)"
+          <label for="reloadPostNav"
+                  onClick="document.location.assign('/posts')"
                   class="lbl-reloadPost" data-test-nav-post-label>
             Posts
           </label>
@@ -34,7 +35,7 @@
   {{! The bigggg banner :D }}
   <div class="main-title">
     {{#link-to "index"}}
-      <label for="reloadPostTitle" onClick="document.location.reload(true)"
+      <label for="reloadPostTitle" onClick="document.location.assign('/posts')"
               class="lbl-reloadPost" data-test-title-post-label>
         A Potato Pit of Programmers
       </label>
